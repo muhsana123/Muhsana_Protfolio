@@ -1,0 +1,988 @@
+/* ==========================================
+   1. VARIABLES & RESET
+   ========================================== */
+:root {
+    --bg-dark: #0a0a0a;
+    --bg-card: #141414;
+    --gold-primary: #D4AF37;
+    --gold-gradient: linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #AA7C11 100%);
+    --text-light: #ffffff;
+    --text-muted: #a0a0a0;
+    --transition-fast: 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    overflow-x: hidden;
+}
+
+/* ==========================================
+   2. HEADER & NAVBAR STYLING
+   ========================================== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+/* Header aur Mobile Toggle ko top priority dene ke liye */
+header, .navbar, .nav-menu {
+    position: relative !important;
+    z-index: 9999 !important;
+}
+
+/* Mobile Toggle Icon */
+.menu-toggle, .hamburger {
+    position: relative !important;
+    z-index: 10000 !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+}
+
+/* Click Block Overlay Fix */
+.hero-section, .page-header, .projects-section {
+    z-index: 1 !important;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 24px;
+}
+
+/* Logo */
+/* style.css */
+
+/* Logo Styling */
+/* Logo Anchor Container */
+.navbar-logo {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    background: transparent !important;
+}
+
+/* Image background blend aur visibility fix */
+.brand-img-logo {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    background: transparent !important;
+    
+    /* Black background ghaib karne ke liye main trick */
+    mix-blend-mode: screen; 
+    
+    /* Golden logo ko zyada pop/bright karne ke liye */
+    filter: brightness(1.2) contrast(1.1); 
+    
+    display: block;
+}
+
+/* Hover Effect (Optional) */
+.brand-img-logo:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.brand-name {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.gold-text {
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Center Links */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 35px;
+}
+
+.nav-link {
+    position: relative;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 15px;
+    font-weight: 500;
+    padding: 6px 0;
+    transition: color var(--transition-fast);
+}
+
+/* Niche Gold Line Underline Effect */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--gold-gradient);
+    border-radius: 2px;
+    transition: width var(--transition-fast);
+}
+
+/* Hover & Active States */
+.nav-link:hover,
+.nav-link.active {
+    color: var(--text-light);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Right Side Button */
+.btn-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gold-gradient);
+    color: #000;
+    font-weight: 600;
+    padding: 10px 22px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 18px rgba(212, 175, 55, 0.35);
+}
+
+.hamburger {
+    display: none;
+    color: var(--text-light);
+    font-size: 22px;
+    cursor: pointer;
+}
+
+
+
+/* footer section */
+
+/* ==========================================
+   3. FOOTER STYLING
+   ========================================== */
+.footer {
+    background-color: #050505;
+    border-top: 1px solid rgba(212, 175, 55, 0.15);
+    padding: 60px 0 20px;
+    margin-top: 80px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.5fr;
+    gap: 40px;
+}
+
+.footer-desc {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-top: 15px;
+}
+
+.footer-title {
+    color: var(--text-light);
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.footer-title::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: var(--gold-gradient);
+}
+
+.footer-links, .footer-contact {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color var(--transition-fast);
+}
+
+.footer-links a i {
+    font-size: 10px;
+    color: var(--gold-primary);
+    margin-right: 6px;
+}
+
+.footer-links a:hover {
+    color: var(--gold-primary);
+}
+
+.footer-contact li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.footer-contact a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.footer-contact a:hover {
+    color: var(--text-light);
+}
+
+.gold-icon {
+    color: var(--gold-primary);
+    font-size: 16px;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.footer-socials a {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+}
+
+.footer-socials a:hover {
+    background: var(--gold-gradient);
+    color: #000;
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    margin-top: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* index.php */
+
+/* ==========================================
+   4. HERO SECTION STYLING
+   ========================================== */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 0 60px;
+    background: radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 50%);
+}
+
+.hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.badge-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: var(--gold-primary);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.hero-title {
+    font-size: 48px;
+    line-height: 1.2;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.hero-description {
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 35px;
+    flex-wrap: wrap;
+}
+
+.btn-large {
+    padding: 14px 28px;
+    font-size: 15px;
+}
+
+.btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--text-light);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    padding: 14px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all var(--transition-fast);
+}
+
+.btn-outline:hover {
+    border-color: var(--gold-primary);
+    color: var(--gold-primary);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+}
+
+.skills-mini {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.skill-tag {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Image Wrapper & Gold Glow Effect */
+.hero-image-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.image-frame {
+    position: relative;
+    width: 320px;
+    height: 380px;
+    border-radius: 20px;
+    padding: 8px;
+    background: var(--gold-gradient);
+    box-shadow: 0 0 35px rgba(212, 175, 55, 0.25);
+    animation: floatAnim 4s ease-in-out infinite;
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 14px;
+    background: #1a1a1a;
+}
+
+/* Floating Card */
+.floating-card {
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    background: rgba(20, 20, 20, 0.9);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    backdrop-filter: blur(10px);
+    padding: 12px 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.floating-card h4 {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.floating-card p {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+@keyframes floatAnim {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+@media (max-width: 992px) {
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .hero-buttons, .skills-mini {
+        justify-content: center;
+    }
+    .hero-title { font-size: 36px; }
+}
+
+/* about.php */
+
+/* ==========================================
+   5. ABOUT PAGE & IMAGE COLLAGE STYLING
+   ========================================== */
+.page-header {
+    padding: 130px 0 40px;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(212, 175, 55, 0.05) 0%, transparent 100%);
+}
+
+.page-title {
+    font-size: 42px;
+    font-weight: 700;
+}
+
+.page-subtitle {
+    color: var(--text-muted);
+    font-size: 15px;
+    margin-top: 8px;
+}
+
+.about-section {
+    padding: 60px 0;
+}
+
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+/* Image Collage Layout */
+.about-gallery {
+    position: relative;
+}
+
+.collage-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    height: 480px;
+    position: relative;
+}
+
+.collage-item {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform var(--transition-fast);
+}
+
+.collage-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.collage-item:hover {
+    transform: scale(1.03);
+    border-color: var(--gold-primary);
+}
+
+.item-main {
+    grid-column: 1 / 9;
+    grid-row: 1 / 10;
+    z-index: 1;
+}
+
+.item-sub1 {
+    grid-column: 7 / 13;
+    grid-row: 5 / 13;
+    z-index: 2;
+    border-color: var(--gold-primary);
+}
+
+.item-sub2 {
+    grid-column: 2 / 7;
+    grid-row: 8 / 13;
+    z-index: 3;
+}
+
+.collage-badge {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    background: var(--gold-gradient);
+    color: #000;
+    padding: 12px 20px;
+    border-radius: 12px;
+    z-index: 4;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+}
+
+.badge-num {
+    display: block;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.badge-text {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* Text Content & Skills */
+.section-title {
+    font-size: 32px;
+    line-height: 1.3;
+    margin-bottom: 20px;
+}
+
+.about-text {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin: 25px 0;
+    background: var(--bg-card);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.info-label {
+    color: var(--text-muted);
+    font-size: 13px;
+    display: block;
+}
+
+.info-value {
+    color: var(--text-light);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* Skill Bars */
+.skills-wrapper {
+    margin: 25px 0;
+}
+
+.skills-heading {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: var(--text-light);
+}
+
+.skill-bar-item {
+    margin-bottom: 15px;
+}
+
+.skill-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+.progress-line {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-line span {
+    display: block;
+    height: 100%;
+    background: var(--gold-gradient);
+    border-radius: 10px;
+}
+
+.about-btn-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+@media (max-width: 992px) {
+    .about-container {
+        grid-template-columns: 1fr;
+    }
+    .collage-grid {
+        height: 380px;
+    }
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* project.php */
+
+/* ==========================================
+   6. PROJECTS & FILTER GRID STYLING
+   ========================================== */
+.projects-section {
+    padding: 50px 0 80px;
+}
+
+.projects-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Filter Buttons Styling */
+.filter-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 45px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: var(--bg-card);
+    color: var(--text-muted);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+.project-card.hide {
+    display: none !important;
+}
+
+/* Ensure buttons are clickable above card overlays */
+.hero-buttons a,
+.filter-btn,
+.github-btn {
+    position: relative;
+    z-index: 10;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--gold-gradient);
+    color: #000;
+    font-weight: 600;
+    border-color: transparent;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+/* Projects Grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--gold-primary);
+}
+
+.card-img {
+    position: relative;
+    height: 210px;
+    overflow: hidden;
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover .card-img img {
+    transform: scale(1.08);
+}
+
+/* Hover Overlay Button */
+.card-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.project-card:hover .card-overlay {
+    opacity: 1;
+}
+
+.github-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gold-gradient);
+    color: #000;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.card-content {
+    padding: 22px;
+}
+
+.card-tag {
+    font-size: 12px;
+    color: var(--gold-primary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card-title {
+    font-size: 18px;
+    color: var(--text-light);
+    margin: 8px 0;
+}
+
+.card-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* Utility Class for JS Filtering */
+.project-card.hide {
+    display: none;
+}
+
+
+
+/* contact.php */
+
+/* ==========================================
+   7. CONTACT SECTION STYLING
+   ========================================== */
+.contact-section {
+    padding: 40px 0 80px;
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 50px;
+}
+
+.contact-desc {
+    color: var(--text-muted);
+    font-size: 15px;
+    margin: 15px 0 30px;
+    line-height: 1.6;
+}
+
+.info-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: var(--bg-card);
+    padding: 18px 22px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: 16px;
+}
+
+.info-card h4 {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.info-card p, .info-card a {
+    font-size: 15px;
+    color: var(--text-light);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.info-card a:hover {
+    color: var(--gold-primary);
+}
+
+/* Contact Form */
+.contact-form-wrapper {
+    background: var(--bg-card);
+    padding: 35px;
+    border-radius: 20px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.form-group-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    background: #0d0d0d;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 16px;
+    border-radius: 10px;
+    color: var(--text-light);
+    font-size: 14px;
+    outline: none;
+    transition: border-color var(--transition-fast);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--gold-primary);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+}
+
+.btn-full {
+    width: 100%;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+/* Alert Boxes */
+.alert {
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 22px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.alert-success {
+    background: rgba(212, 175, 55, 0.15);
+    border: 1px solid var(--gold-primary);
+    color: #FFD700;
+}
+
+.alert-danger {
+    background: rgba(255, 77, 77, 0.15);
+    border: 1px solid #ff4d4d;
+    color: #ff6b6b;
+}
+
+@media (max-width: 768px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+    .form-group-row {
+        grid-template-columns: 1fr;
+    }
+}
